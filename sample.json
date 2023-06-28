@@ -1,0 +1,318 @@
+[
+    {
+        "id": 563405,
+        "name": "GalaxyCon Raleigh x DawnStar Video Games",
+        "slug": "tournament/galaxycon-raleigh-x-dawnstar-video-games",
+        "startAt": 1690488000,
+        "endAt": 1690761600,
+        "url": "/tournament/galaxycon-raleigh-x-dawnstar-video-games",
+        "venueAddress": "500 S Salisbury St, Raleigh, NC 27601, USA",
+        "timezone": "America/New_York",
+        "images": [
+            {
+                "url": "https://images.start.gg/images/tournament/563405/image-acf7e01ee4fc67c8d58310d93316eed5.png?ehk=U3wV6DqOrwgROpWdWbM6iZtzjq1edRqrEpen7HUDoy4%3D&ehkOptimized=P20uLNaqYmDCs%2BvONFdiLD3JKw1%2Bbf71iV7rdZ844aM%3D",
+                "type": "profile"
+            },
+            {
+                "url": "https://images.start.gg/images/tournament/563405/image-debe0e08261dc1b54082a7b510f8fd1c.png?ehk=shIU2g3G3SRSc1H31NUnkd%2BQlHTfhqXEIEwCr02kKeg%3D&ehkOptimized=HtVQJSifDU6EpaKXrNPXKk6pBXxtGgvzalfC4UR5SLc%3D",
+                "type": "banner"
+            }
+        ],
+        "events": [
+            {
+                "id": 935690,
+                "videogame": {
+                    "slug": "game/dragon-ball-fighterz"
+                }
+            },
+            {
+                "id": 935699,
+                "videogame": {
+                    "slug": "game/rocket-league"
+                }
+            },
+            {
+                "id": 935750,
+                "videogame": {
+                    "slug": "game/street-fighter-iii-3rd-strike"
+                }
+            },
+            {
+                "id": 935757,
+                "videogame": {
+                    "slug": "game/melee"
+                }
+            },
+            {
+                "id": 935762,
+                "videogame": {
+                    "slug": "game/ultimate"
+                }
+            },
+            {
+                "id": 935764,
+                "videogame": {
+                    "slug": "game/street-fighter-6"
+                }
+            },
+            {
+                "id": 935767,
+                "videogame": {
+                    "slug": "game/guilty-gear-strive"
+                }
+            },
+            {
+                "id": 935768,
+                "videogame": {
+                    "slug": "game/tekken-7"
+                }
+            },
+            {
+                "id": 935774,
+                "videogame": {
+                    "slug": "game/mortal-kombat-11-2"
+                }
+            }
+        ]
+    },
+    {
+        "id": 559593,
+        "name": "SB Street Fighter 6 Tournament",
+        "slug": "tournament/sb-street-fighter-6-tournament",
+        "startAt": 1689456600,
+        "endAt": 1689480000,
+        "url": "/tournament/sb-street-fighter-6-tournament",
+        "venueAddress": "4251 Legion Rd, Hope Mills, NC 28348, USA",
+        "timezone": "America/New_York",
+        "images": [
+            {
+                "url": "https://images.start.gg/images/tournament/559593/image-81167e7bd9905b3352674d2a8fd6b25d.png?ehk=uGXxabQMYOvhYTDReKzZmmPtgvMnCyWUzdOxEC1Xfpw%3D&ehkOptimized=MSrjisVcNcz6Uyhb6Od3t35vZ%2B200atmdEfuduJWpVI%3D",
+                "type": "profile"
+            },
+            {
+                "url": "https://images.start.gg/images/tournament/559593/image-b93dcd0326946d23eea0c4f057d0065e.jpg?ehk=aeq%2FEepKWba2AkVd%2Bs7C%2FU8%2BI8sE8qBvMGTTsTsbaoA%3D&ehkOptimized=HgA%2FcJmN0FMX%2B3KaOpkk04I7r%2Bwv%2FyoAd9w8olngFIw%3D",
+                "type": "banner"
+            }
+        ],
+        "events": [
+            {
+                "id": 928901,
+                "videogame": {
+                    "slug": "game/street-fighter-6"
+                }
+            }
+        ]
+    },
+    {
+        "id": 559483,
+        "name": "Tournament of Thrones 35",
+        "slug": "tournament/tournament-of-thrones-35",
+        "startAt": 1689440400,
+        "endAt": 1689469200,
+        "url": "/tournament/tournament-of-thrones-35",
+        "venueAddress": "305 S Roxboro St, Durham, NC 27701, USA",
+        "timezone": "America/New_York",
+        "images": [
+            {
+                "url": "https://images.start.gg/images/tournament/559483/image-3781fbd2eb0b6248ea970690a32a993b.png?ehk=AiEigsh9kVfo29kb6otN2y5638YrAH3uNkcAqb4%2B0%2Bg%3D&ehkOptimized=tMdCMiUTJiV%2FdU5QNrO9ZTbRfg9MfNnUprAplKrSXOc%3D",
+                "type": "profile"
+            },
+            {
+                "url": "https://images.start.gg/images/tournament/559483/image-3e41be8572d08ea1a5c1f6d50244d9be.jpg?ehk=9G93CX%2FbZWmSdcTZFRGlxVifHtngY6daof%2BnwUwOR5c%3D&ehkOptimized=a8n1qvsO4CejEW1p18jauWRziLxQMLfeboeyz28QNAU%3D",
+                "type": "banner"
+            }
+        ],
+        "events": [
+            {
+                "id": 931691,
+                "videogame": {
+                    "slug": "game/idol-showdown"
+                }
+            },
+            {
+                "id": 931690,
+                "videogame": {
+                    "slug": "game/the-king-of-fighters-xv"
+                }
+            },
+            {
+                "id": 931692,
+                "videogame": {
+                    "slug": "game/blazblue-central-fiction"
+                }
+            },
+            {
+                "id": 931728,
+                "videogame": {
+                    "slug": "game/street-fighter-6"
+                }
+            },
+            {
+                "id": 931693,
+                "videogame": {
+                    "slug": "game/tekken-7"
+                }
+            },
+            {
+                "id": 931694,
+                "videogame": {
+                    "slug": "game/street-fighter-iii-3rd-strike"
+                }
+            },
+            {
+                "id": 931699,
+                "videogame": {
+                    "slug": "game/guilty-gear-strive"
+                }
+            },
+            {
+                "id": 931689,
+                "videogame": {
+                    "slug": "game/footsies-3"
+                }
+            }
+        ]
+    },
+    {
+        "id": 562426,
+        "name": "Last Level 40",
+        "slug": "tournament/last-level-40",
+        "startAt": 1688835600,
+        "endAt": 1688868000,
+        "url": "/tournament/last-level-40",
+        "venueAddress": "8925 J M Keynes Dr #1b, Charlotte, NC 28262, USA",
+        "timezone": "America/New_York",
+        "images": [
+            {
+                "url": "https://images.start.gg/images/tournament/562426/image-eb295e0ed573b88ed18bd9cbad8202be.png?ehk=1mhWlF%2Bsfwa9QmGfvveEjtIal4%2BQy1hkcyN9Gyo5ohw%3D&ehkOptimized=OPKHAboWv4tioEvaagpGYfoANnphj9FrpkU4e8QpdmQ%3D",
+                "type": "profile"
+            },
+            {
+                "url": "https://images.start.gg/images/tournament/562426/image-150eeba1fcdb3671e41b7d68d490d152.jpg?ehk=vMC2oCdl8gIspOuD30y8fwqyx0RvwfFZQdbUgiM8IOQ%3D&ehkOptimized=gt6fgu0e5jrI2%2F2ziHN5TODInwwESlfprkgG72EAhOE%3D",
+                "type": "banner"
+            }
+        ],
+        "events": [
+            {
+                "id": 933995,
+                "videogame": {
+                    "slug": "game/guilty-gear-strive"
+                }
+            },
+            {
+                "id": 933994,
+                "videogame": {
+                    "slug": "game/blazblue-central-fiction"
+                }
+            },
+            {
+                "id": 933999,
+                "videogame": {
+                    "slug": "game/street-fighter-6"
+                }
+            },
+            {
+                "id": 934000,
+                "videogame": {
+                    "slug": "game/ultimate-marvel-vs-capcom-3"
+                }
+            }
+        ]
+    },
+    {
+        "id": 559659,
+        "name": "RDU Tekken Monthly #10",
+        "slug": "tournament/rdu-tekken-monthly-10",
+        "startAt": 1688234400,
+        "endAt": 1688256000,
+        "url": "/tournament/rdu-tekken-monthly-10",
+        "venueAddress": "108 E Main St #201, Durham, NC 27701, USA",
+        "timezone": "America/New_York",
+        "images": [
+            {
+                "url": "https://images.start.gg/images/tournament/559659/image-34c197d24e0ad66c40e270f31b6cb4c5.png?ehk=i%2Fi9d0reGctYHxCejQIPsYzm4doOYHH6t7bs5ABKzmk%3D&ehkOptimized=tGkoUZP%2BVzkQcjtu1IrQITo4TibXv3dYbzApKrXtQpA%3D",
+                "type": "profile"
+            },
+            {
+                "url": "https://images.start.gg/images/tournament/559659/image-ce3bdeffe0bef306e3bad6b1d8800951.jpg?ehk=kpvIAVX%2BP3lKvrWv9uviHAndkeYcBEvWW0bNLIAJP24%3D&ehkOptimized=%2FJu7EvBZG%2FtzB3w6%2FshWRGulfKMibHiSaQnUGiuBqRk%3D",
+                "type": "banner"
+            }
+        ],
+        "events": [
+            {
+                "id": 929038,
+                "videogame": {
+                    "slug": "game/tekken-7"
+                }
+            }
+        ]
+    },
+    {
+        "id": 562362,
+        "name": "Fighting Game Community College # 3",
+        "slug": "tournament/fighting-game-community-college-3",
+        "startAt": 1688079600,
+        "endAt": 1688090400,
+        "url": "/tournament/fighting-game-community-college-3",
+        "venueAddress": "108 E Main St, Durham, NC 27701, USA",
+        "timezone": "America/New_York",
+        "images": [
+            {
+                "url": "https://images.start.gg/images/tournament/562362/image-b43b04cb45853ab3cc3995ac9233254b.png?ehk=Q8xlDuCu8dOMtrMQU7pFtnSOYlIbNUlbZxD%2FWbAfvI4%3D&ehkOptimized=xCdSBMFJVVkIf6IGmGelH6QTp2yOGFJ69rAxPn%2BFqAQ%3D",
+                "type": "profile"
+            },
+            {
+                "url": "https://images.start.gg/images/tournament/562362/image-184ad955abe7e4975afc6771e0987116.png?ehk=2w2oaULGAEsldr0eLWxZG%2BEQPbcnWkCguGSoX2RdQUw%3D&ehkOptimized=P50jLkMs8AWQFDivgZFVPB%2B6bvdfYLacy8%2FqbsCoVC0%3D",
+                "type": "banner"
+            }
+        ],
+        "events": [
+            {
+                "id": 933875,
+                "videogame": {
+                    "slug": "game/guilty-gear-strive"
+                }
+            },
+            {
+                "id": 933876,
+                "videogame": {
+                    "slug": "game/street-fighter-6"
+                }
+            },
+            {
+                "id": 933874,
+                "videogame": {
+                    "slug": "game/tekken-7"
+                }
+            }
+        ]
+    },
+    {
+        "id": 563926,
+        "name": "Hundred Hand Hustle #4",
+        "slug": "tournament/hundred-hand-hustle-4-1",
+        "startAt": 1687993200,
+        "endAt": 1688004000,
+        "url": "/tournament/hundred-hand-hustle-4-1",
+        "venueAddress": "36 W Main St, Thomasville, NC 27360, USA",
+        "timezone": "America/New_York",
+        "images": [
+            {
+                "url": "https://images.start.gg/images/tournament/563926/image-630a30547769d6193129f3899b69298d.png?ehk=yL3I1W%2FnWjhapSFoMiS38DJWNHn4SNDXIr1BPPUQZHI%3D&ehkOptimized=9%2FNH8o13uJ%2F13DvWp89dMSS89gNqyZlgDEwZdxJwjp4%3D",
+                "type": "profile"
+            },
+            {
+                "url": "https://images.start.gg/images/tournament/563926/image-a967b0b2e448b9655a59d0b15891d357.png?ehk=%2ByeUyrIMcpt3dgAvFDSlhjGDugKjBUiczrcxEk9sHWc%3D&ehkOptimized=a8Fcr4h%2FrzD0yBVgByFNKZ%2FadQrcbRMLfsS3j0hRe%2FQ%3D",
+                "type": "banner"
+            }
+        ],
+        "events": [
+            {
+                "id": 936703,
+                "videogame": {
+                    "slug": "game/street-fighter-6"
+                }
+            }
+        ]
+    }
+]
