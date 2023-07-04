@@ -13,12 +13,12 @@ from constants import STARTGGAPIKEY
 # initiate an object of class TournamentPuller to get tournament data
 tp = TournamentPuller(apikey=STARTGGAPIKEY, state="NC")
 
-# initiate results by state, we already provided state at the initition
-# step so we dont need to pass that in agin here
+# initiate results by state, we already provided state at the initiation
+# step so we dont need to pass that in again here
 # note that we also could have initiated by a list of owner ids
 tp.initiate_by_state()
 
-# afer we get state results lets only look at tournaments that run certain games
+# after we get state results lets only look at tournaments that run certain games
 # there are also other filter options to choose from that can be used once a 
 # list is initiated
 tp.filter_by_game(game_list=['game/street-fighter-6', 'game/guilty-gear-strive'])
