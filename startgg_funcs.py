@@ -1,93 +1,107 @@
-from pysmashgg import SmashGG
 from pysmashgg.api import run_query
-from constants import STARTGGAPIKEY
 from datetime import datetime, timedelta
 
-TOURNAMENTGAMESQUERY = '''query TournamentGames($tournamentId: ID!) {
-  tournament(id: $tournamentId) {
-    id
-    name
-    events{
-      id
-      videogame{
-        slug
-      }
-    }
-  }
-}
-'''
 
-TOURNAMENTDETAILSQUERY = '''query TournamentGames($tournamentId: ID!) {
-  tournament(id: $tournamentId) {
-    id
-    name
-    slug
-    startAt
-    endAt
-    url
-    venueAddress
-    timezone
-    images{
+TOURNAMENTOWNERQUERY = '''
+query TournamentsByOwner($page: Int!, $ownerId: ID!, $startTime: Timestamp!, $endTime: Timestamp!, $perPage: Int!) {
+    tournaments(query: {
+      perPage: $perPage
+      page: $page
+      sortBy: "startAt asc"
+      filter: {
+        ownerId: $ownerId
+        afterDate: $startTime
+        beforeDate: $endTime
+      }
+    }) {
+    nodes {
+      id
+      name
+      slug
+      startAt
+      endAt
       url
-      type
-    }
-    events{
-      id
-      videogame{
-        slug
+      venueAddress
+      addrState
+      timezone
+      owner{
+        name
+        id
+        player{
+          id
+          gamerTag
+        }
+      }
+      images{
+        url
+        type
+      }
+      events{
+        id
+        videogame{
+          slug
+        }
       }
     }
   }
 }
 '''
 
-VALID_GAMES = (
-    'game/dragon-ball-fighterz', 'game/street-fighter-iii-3rd-strike', 'game/street-fighter-6',
-    'game/guilty-gear-strive', 'game/tekken-7')
+TOURNAMENTSTATEQUERY = '''
+query TournamentsByOwner($page: Int!, $state: String!, $startTime: Timestamp!, $endTime: Timestamp!, $perPage: Int!) {
+    tournaments(query: {
+      perPage: $perPage
+      page: $page
+      sortBy: "startAt asc"
+      filter: {
+        addrState : $state
+        afterDate: $startTime
+        beforeDate: $endTime
+      }
+    }) {
+    nodes {
+      id
+      name
+      slug
+      startAt
+      endAt
+      url
+      venueAddress
+      addrState
+      timezone
+      owner{
+        name
+        id
+        player{
+          id
+          gamerTag
+        }
+      }
+      images{
+        url
+        type
+      }
+      events{
+        id
+        videogame{
+          slug
+        }
+      }
+    }
+  }
+}
+'''
 
 
-def get_tournament_games(tournament_id, key=STARTGGAPIKEY, auto_retry=True):
-    """
-    Get all games that are being run at a tournament.
-
-    :param tournament_id: integer of tournament id
-    :param key: startgg api key
-    :param auto_retry: whether to retry api call if it fails
-    :return: list of games being run at a tournament
-    """
-    variables = {"tournamentId": tournament_id}
-    header = {"Authorization": "Bearer " + key}
-    response = run_query(TOURNAMENTGAMESQUERY, variables, header, auto_retry)
-    data = response["data"]["tournament"]["events"]
-    games = [x["videogame"]["slug"] for x in data]
-    return games
-
-
-def get_tournament_details(tournament_id, key=STARTGGAPIKEY, auto_retry=True):
-    """
-    Get details of tournament
-
-    :param tournament_id: integer of tournament id
-    :param key: startgg api key
-    :param auto_retry: whether to retry api call if it fails
-    :return: list of dictionaries including tournament details
-    """
-    variables = {"tournamentId": tournament_id}
-    header = {"Authorization": "Bearer " + key}
-    response = run_query(TOURNAMENTDETAILSQUERY, variables, header, auto_retry)
-    data = response["data"]["tournament"]
-    return data
-
-
-def get_state_tournaments(
-        state, start_date=datetime.today(),
-        end_date=datetime.today()+timedelta(days=30), key=STARTGGAPIKEY):
+def get_owner_tournaments(
+        owner, key, start_date=datetime.today(),
+        end_date=datetime.today()+timedelta(days=30)):
     """
     Returns a list of slug names of tournaments occurring in a selected state
     within two given dates.
 
             Parameters:
-                    state (str): A two letter state indicator
+                    owner (int): id string for owner
                     start_date (datetime): minimum date time to consider
                     end_date (datetime): maximum date time to consider
                     key (str): start.gg api key
@@ -95,50 +109,81 @@ def get_state_tournaments(
             Returns:
                     tournament_list (list): list of tournament slugs
     """
-    smash = SmashGG(key, True)
-    all_valid = True
-    max_tries = 10
-    attempt = 0
+    page_length = 200
+    variables = {
+        "ownerId": owner,
+        "page": 1,
+        "startTime": int(round(start_date.timestamp())),
+        "endTime": int(round(end_date.timestamp())),
+        "perPage": page_length
+    }
+    header = {"Authorization": "Bearer " + key}
     tournament_list = list()
-    fts = datetime.fromtimestamp
-    while all_valid and attempt < max_tries:
-        state_tournaments = smash.tournament_show_by_state(state, 1)
-        start_times = [fts(x["startTimestamp"]) for x in state_tournaments]
-        valid_times = [start_date < x < end_date for x in start_times]
-        valid_indices = [i for i, x in enumerate(valid_times) if x]
-        tournament_list += [state_tournaments[i]["id"] for i in valid_indices]
-        all_valid = all(valid_times)
-        attempt += 1
+    all_valid = True
+    max_tries = 100
+    while all_valid and variables["page"] < max_tries:
+        owner_tournaments = run_query(TOURNAMENTOWNERQUERY, variables, header, True)["data"]["tournaments"]["nodes"]
+        all_valid = len(owner_tournaments) == page_length
+        tournament_list += owner_tournaments
+        variables["page"] += 1
 
     return tournament_list
 
 
-def filter_by_games(
-        tournament_list,
-        game_list=VALID_GAMES,
-        key=STARTGGAPIKEY):
+def get_state_tournaments(
+        state, key, start_date=datetime.today(),
+        end_date=datetime.today()+timedelta(days=30)):
     """
-    Given a tournament list, returns tournament details only for those
-    tournaments hosting events with certain games.
+    Returns a list of slug names of tournaments occurring in a selected state
+    within two given dates.
 
-    :param tournament_list: list of tournament ids
-    :param game_list: list of valid game slugs to filter to
-    :param key: startgg api key
-    :return: list of tournament dictionary details
+            Parameters:
+                    state (str): id string for state
+                    start_date (datetime): minimum date time to consider
+                    end_date (datetime): maximum date time to consider
+                    key (str): start.gg api key
+
+            Returns:
+                    tournament_list (list): list of tournament slugs
     """
-    valid_tournaments = list()
-    for t in tournament_list:
-        t_game_list = get_tournament_games(t, key=key)
-        if any(x in game_list for x in t_game_list):
-            valid_tournaments.append(get_tournament_details(t, key=key))
+    page_length = 200
+    variables = {
+        "state": state,
+        "page": 1,
+        "startTime": int(round(start_date.timestamp())),
+        "endTime": int(round(end_date.timestamp())),
+        "perPage": page_length
+    }
+    header = {"Authorization": "Bearer " + key}
+    tournament_list = list()
+    all_valid = True
+    max_tries = 100
+    while all_valid and variables["page"] < max_tries:
+        state_tournaments = run_query(TOURNAMENTSTATEQUERY, variables, header, True)["data"]["tournaments"]["nodes"]
+        all_valid = len(state_tournaments) == page_length
+        tournament_list += state_tournaments
+        variables["page"] += 1
 
-    return valid_tournaments
+    return tournament_list
 
 
-if __name__ == '__main__':
-    # this takes a couple of minutes to run
-    # get all events which are happening in NC in the next month
-    nc_events = get_state_tournaments("NC")
-    # filter down to just fgc games
-    nc_fgc_events = filter_by_games(nc_events)
-    print(nc_fgc_events)
+def get_owners_tournaments(
+        owner_list, key, start_date=datetime.today(),
+        end_date=datetime.today()+timedelta(days=30)):
+    """
+
+    :param owner_list:
+    :param key:
+    :param start_date:
+    :param end_date:
+    :return:
+    """
+
+    tournament_list = list()
+
+    for o in owner_list:
+        tournament_list += get_owner_tournaments(o, key=key, start_date=start_date, end_date=end_date)
+
+    return tournament_list
+
+
