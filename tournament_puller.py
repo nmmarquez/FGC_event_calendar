@@ -8,7 +8,7 @@ class TournamentPuller:
     def __init__(self,
                  apikey: str,
                  game_list: Optional[list[str]] = None,
-                 owner_list: Optional[list[str]] = None,
+                 owner_list: Optional[list[int]] = None,
                  state: str = '',
                  start_date: datetime = datetime.today(),
                  end_date: datetime = datetime.today() + timedelta(days=30)):
@@ -31,7 +31,7 @@ class TournamentPuller:
             end_date=self.end_date,
             key=self.key)
 
-    def initiate_by_owner(self, owner_list: Optional[list[str]] = None):
+    def initiate_by_owner(self, owner_list: Optional[list[int]] = None):
         if owner_list is None and self.owner_list is not None:
             owner_list = self.owner_list
 
@@ -41,7 +41,7 @@ class TournamentPuller:
 
         if len(owner_list) == 0:
             raise ValueError(
-                "'owner_list' must be a list of length at least 1 with string types."
+                "'owner_list' must be a list of length at least 1 with int types."
             )
 
         self.tournament_list = get_owners_tournaments(
@@ -70,7 +70,7 @@ class TournamentPuller:
             ])
         ]
 
-    def filter_by_owner(self, owner_list: Optional[list[str]] = None):
+    def filter_by_owner(self, owner_list: Optional[list[int]] = None):
         if owner_list is None and self.owner_list is not None:
             owner_list = self.owner_list
 
@@ -80,7 +80,7 @@ class TournamentPuller:
 
         if len(owner_list) == 0:
             raise ValueError(
-                "'owner_list' must be a list of length at least 1 with string types."
+                "'owner_list' must be a list of length at least 1 with int types."
             )
 
         self.tournament_list = [

@@ -176,8 +176,8 @@ def get_state_tournaments(
 
 
 def get_owners_tournaments(
-    owner_list,
-    key,
+    owner_list: list[int],
+    key: str,
     start_date=datetime.today(),
     end_date=datetime.today() + timedelta(days=30)
 ) -> list[Any]:
