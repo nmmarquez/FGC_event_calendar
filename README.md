@@ -7,7 +7,7 @@ Pulls info on select tournaments on start.gg and uses this information to create
 Let's walk through a quick example on how you might pull tournament info from the startgg api class `TournamentPuller`.
 
 ```python
-from TournamentPuller import TournamentPuller
+from tournament_puller import TournamentPuller
 from constants import STARTGGAPIKEY
 
 # initiate an object of class TournamentPuller to get tournament data
