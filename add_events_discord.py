@@ -1,7 +1,7 @@
 
 import discord
 from datetime import datetime
-from TournamentPuller import TournamentPuller
+from tournament_puller import TournamentPuller
 import dotenv
 import os
 dotenv.load_dotenv()
