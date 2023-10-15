@@ -1,6 +1,6 @@
 from pysmashgg.api import run_query
 from datetime import datetime, timedelta
-
+from typing import Any
 
 TOURNAMENTOWNERQUERY = '''
 query TournamentsByOwner($page: Int!, $ownerId: ID!, $startTime: Timestamp!, $endTime: Timestamp!, $perPage: Int!) {
@@ -94,17 +94,20 @@ query TournamentsByOwner($page: Int!, $state: String!, $startTime: Timestamp!, $
 
 
 def get_owner_tournaments(
-        owner, key, start_date=datetime.today(),
-        end_date=datetime.today()+timedelta(days=30)):
+    owner: int,
+    key: str,
+    start_date: datetime = datetime.today(),
+    end_date: datetime = datetime.today() + timedelta(days=30)
+) -> list[Any]:
     """
     Returns a list of slug names of tournaments occurring in a selected state
     within two given dates.
 
             Parameters:
                     owner (int): id string for owner
+                    key (str): start.gg api key
                     start_date (datetime): minimum date time to consider
                     end_date (datetime): maximum date time to consider
-                    key (str): start.gg api key
 
             Returns:
                     tournament_list (list): list of tournament slugs
@@ -122,7 +125,8 @@ def get_owner_tournaments(
     all_valid = True
     max_tries = 100
     while all_valid and variables["page"] < max_tries:
-        owner_tournaments = run_query(TOURNAMENTOWNERQUERY, variables, header, True)["data"]["tournaments"]["nodes"]
+        owner_tournaments = run_query(TOURNAMENTOWNERQUERY, variables, header,
+                                      True)["data"]["tournaments"]["nodes"]
         all_valid = len(owner_tournaments) == page_length
         tournament_list += owner_tournaments
         variables["page"] += 1
@@ -131,17 +135,20 @@ def get_owner_tournaments(
 
 
 def get_state_tournaments(
-        state, key, start_date=datetime.today(),
-        end_date=datetime.today()+timedelta(days=30)):
+    state: str,
+    key: str,
+    start_date: datetime = datetime.today(),
+    end_date: datetime = datetime.today() + timedelta(days=30)
+) -> list[Any]:
     """
     Returns a list of slug names of tournaments occurring in a selected state
     within two given dates.
 
             Parameters:
                     state (str): id string for state
+                    key (str): start.gg api key
                     start_date (datetime): minimum date time to consider
                     end_date (datetime): maximum date time to consider
-                    key (str): start.gg api key
 
             Returns:
                     tournament_list (list): list of tournament slugs
@@ -159,7 +166,8 @@ def get_state_tournaments(
     all_valid = True
     max_tries = 100
     while all_valid and variables["page"] < max_tries:
-        state_tournaments = run_query(TOURNAMENTSTATEQUERY, variables, header, True)["data"]["tournaments"]["nodes"]
+        state_tournaments = run_query(TOURNAMENTSTATEQUERY, variables, header,
+                                      True)["data"]["tournaments"]["nodes"]
         all_valid = len(state_tournaments) == page_length
         tournament_list += state_tournaments
         variables["page"] += 1
@@ -168,8 +176,11 @@ def get_state_tournaments(
 
 
 def get_owners_tournaments(
-        owner_list, key, start_date=datetime.today(),
-        end_date=datetime.today()+timedelta(days=30)):
+    owner_list: list[int],
+    key: str,
+    start_date=datetime.today(),
+    end_date=datetime.today() + timedelta(days=30)
+) -> list[Any]:
     """
 
     :param owner_list:
@@ -182,8 +193,9 @@ def get_owners_tournaments(
     tournament_list = list()
 
     for o in owner_list:
-        tournament_list += get_owner_tournaments(o, key=key, start_date=start_date, end_date=end_date)
+        tournament_list += get_owner_tournaments(o,
+                                                 key=key,
+                                                 start_date=start_date,
+                                                 end_date=end_date)
 
     return tournament_list
-
-
