@@ -5,8 +5,6 @@ from tournament_puller import TournamentPuller
 import dotenv
 import os
 import time
-import redis
-redis_client = redis.Redis(host='localhost', port=6379, decode_responses=True)
 dotenv.load_dotenv()
 
 errors = []
@@ -25,7 +23,7 @@ tp = TournamentPuller(apikey=os.environ["STARTGGAPIKEY"], state="NC")
 # initiate results by state, we already provided state at the initiation
 # step so we dont need to pass that in again here
 # note that we also could have initiated by a list of owner ids
-tp.initiate_by_state()
+tp.initiate_by_state("NC")
 
 # after we get state results lets only look at tournaments that run certain games
 # there are also other filter options to choose from that can be used once a
@@ -52,10 +50,13 @@ async def on_message(message):
 
     if message.content.startswith('$dumpevents'):
         guild = await client.fetch_guild(os.environ['GUILD_ID'])
-
+        guild_events = await guild.fetch_scheduled_events()
         for t in tp.tournament_list:
-            if(redis_client.get(t['id'])):
-                continue
+            if([event for event in guild_events if event.name == t['name']]):
+                    print("already found")
+                    continue
+                
+            print("Adding")
             time.sleep(1)
             await guild.create_scheduled_event(privacy_level=discord.PrivacyLevel.guild_only,
                                                entity_type=discord.EntityType.external,
@@ -65,6 +66,5 @@ async def on_message(message):
                                                start_time=datetime.fromtimestamp(
                                                    t["startAt"]).astimezone(),
                                                end_time=datetime.fromtimestamp(t["endAt"]).astimezone())
-            redis_client.set(t['id'],1)
 
 client.run(os.environ["BOT_TOKEN"])
