@@ -4,6 +4,9 @@ from datetime import datetime
 from TournamentPuller import TournamentPuller
 import dotenv
 import os
+import time
+import redis
+redis_client = redis.Redis(host='localhost', port=6379, decode_responses=True)
 dotenv.load_dotenv()
 
 errors = []
@@ -37,6 +40,8 @@ client = discord.Client(intents=intents)
 
 @client.event
 async def on_ready():
+    for e in await (await client.fetch_guild(os.environ['GUILD_ID'])).fetch_scheduled_events():
+        print(await e.delete())
     print(f'We have logged in as {client.user}')
 
 
@@ -47,13 +52,19 @@ async def on_message(message):
 
     if message.content.startswith('$dumpevents'):
         guild = await client.fetch_guild(os.environ['GUILD_ID'])
+
         for t in tp.tournament_list:
+            if(redis_client.get(t['id'])):
+                continue
+            time.sleep(1)
             await guild.create_scheduled_event(privacy_level=discord.PrivacyLevel.guild_only,
                                                entity_type=discord.EntityType.external,
                                                name=t['name'],
-                                               location=f"https://www.start.gg{t['url']}",
+                                               description=f"https://www.start.gg{t['url']}",
+                                               location=f"{t.get('venueAddress','')}",
                                                start_time=datetime.fromtimestamp(
                                                    t["startAt"]).astimezone(),
                                                end_time=datetime.fromtimestamp(t["endAt"]).astimezone())
+            redis_client.set(t['id'],1)
 
 client.run(os.environ["BOT_TOKEN"])
