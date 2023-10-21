@@ -1,0 +1,3 @@
+pysmashgg
+discord.py
+python-dotenv
