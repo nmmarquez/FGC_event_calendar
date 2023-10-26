@@ -31,8 +31,8 @@ tree = app_commands.CommandTree(client)
 @client.event
 async def on_ready():
     await tree.sync()
-    for e in await (await client.fetch_guild(os.environ['GUILD_ID'])).fetch_scheduled_events():
-        print(await e.delete())
+    # for e in await (await client.fetch_guild(os.environ['GUILD_ID'])).fetch_scheduled_events():
+        # print(await e.delete())
     print(f'We have logged in as {client.user}')
 
 async def dump_events(guild,guild_events):
